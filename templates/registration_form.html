@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>New Registration!</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <div class="flex-container-register col col-lg-6 col-sm-8 col-xs-12 parent">
+        <form action="/visitordetail" enctype="multipart/form-data" method="POST">
+            <table class="table table-sm">
+                <th colspan="2">
+                    <h3>Visitor Registration Form</h3>
+                </th>
+                <tr>
+                    <td>
+                        First Name:
+                    </td>
+                    <td>
+                        <input class="form-control no-border" type="text" name="firstname" placeholder="First Name" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Last Name:
+                    </td>
+                    <td>
+                        <input class="form-control no-border" type="text" name="lastname" placeholder="Last Name" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Organization:
+                    </td>
+                    <td>
+                        <input class="form-control no-border" type="text" name="company" placeholder="Company">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Contact:
+                    </td>
+                    <td>
+                        <input class="form-control no-border" type="tel" id="phone" name="phone" pattern="[9][8]{1}[0-9]{8}" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Email:
+                    </td>
+                    <td>
+                        <input class="form-control no-border" type="email" name="email" placeholder="Email" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Purpose:
+                    </td>
+                    <td>
+                        <input class="form-control no-border" type="text" name="purpose" placeholder="Purpose of Visit">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Visiting Department:
+                    </td>
+                    <td>
+                        <input class="form-control no-border" type="text" name="visited_depart" placeholder="Visiting Department">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Upload:
+                    </td>
+                    <td>
+                        <input class="form-control no-border" type="file" class="vistor-photo" name="photo" id="photo" onchange="readURL(this);"> </td>
+                </tr>
+                <tr>
+                    <td>
+                        Signature:
+                    </td>
+                    <td>
+                        <input class="form-control no-border" type="file" class="vistor-photo" name="photo" id="photo" onchange="readURL(this);">
+                    </td>
+                </tr>
+                <tfoot>
+                    <td>
+                        <button class="btn btn-outline-primary btn-lg" type="submit" id="button_register">Save and Visit</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-lg" type="button" id="button_visitorin">Print Ticket</button>
+                    </td>
+                </tfoot>
+            </table>
+        </form>
+    </div>
+
+    <img id="blah" src="#" alt="visitor photo" />
+    <footer>
+    </footer>
+</body>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(150);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+<!-- <script type="text/javascript">
+    document.getElementById("button_register").onclick = function() {
+        location.href = "index.html";
+    };
+</script> -->
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</html>

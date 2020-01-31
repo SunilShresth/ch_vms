@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+    #element1 {
+        display: inline-block;
+        margin-right: 10px;
+    }
+    
+    #element2 {
+        display: inline-block;
+    }
+    
+    .search-container button {
+        float: right;
+        padding: 6px 10px;
+        margin-top: 8px;
+        margin-right: 16px;
+        background: #ddd;
+        font-size: 17px;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .main-container {
+        text-align: center;
+    }
+</style>
+
+
+
+
+<div class=main-container>
+    <div id="element1">
+        <form action="/visitorform" method="POST">
+            <button type="submit">New Visitor</button>
+        </form>
+    </div>
+    <div class="search-container" id="element2">
+        <form action="/action_page.php">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+</div>

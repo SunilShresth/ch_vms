@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>CH Visitor's Log</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+    <header></header>
+    <div class="indexparent col col-lg-3 col-sm-4 col-xs-8 parent">
+        <table class="table table-bordered">
+            <tr>
+                <td><button class="btn btn-outline-primary btn-block" type="button" id="button_register">New</button></td>
+            </tr>
+            <tr>
+                <td><button class="btn btn-outline-primary btn-block" type="button" id="button_visitorsrecords">Records</button></td>
+            </tr>
+            <tr>
+                <td><button class="btn btn-outline-primary btn-block" type="button" id="button_showoutpending">Show Out Pending</button></td>
+            </tr>
+            <tr>
+                <td><input class="md-textarea form-control" type="text" placeholder="Search.." name="search"></td>
+            </tr>
+        </table>
+    </div>
+    <footer></footer>
+</body>
+<script type="text/javascript">
+    document.getElementById("button_register").onclick = function() {
+        location.href = "visitorform";
+    };
+    document.getElementById("button_visitorsrecords").onclick = function() {
+        location.href = "recordlist";
+    };
+    document.getElementById("button_showoutpending").onclick = function() {
+        location.href = "pendingoutlist";
+    };
+</script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</html>

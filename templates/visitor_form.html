@@ -1,0 +1,45 @@
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+<meta charset=utf-8 />
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(150);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+
+<form action="/visitordetail" enctype="multipart/form-data" method="POST">
+    <!-- <div class="form-group">
+        <label>Select image</label>
+        <div class="custom-file">
+            
+        </div>
+    </div> -->
+    <input type="file" class="vistor-photo" name="photo" id="photo" onchange="readURL(this);"><br>
+    <img id="blah" src="#" alt="visitor photo" /> <br> First name:<br>
+    <input type="text" name="firstname" placeholder="First Name" required><br> Last name:<br>
+    <input type="text" name="lastname" placeholder="Last Name" required><br> Email:
+    <br>
+    <input type="email" name="email" placeholder="Email" required><br> Phone:
+    <br>
+    <input type="tel" id="phone" name="phone" pattern="[9][8]{1}[0-9]{8}" required><br> Organization:
+    <br>
+    <input type="text" name="company" placeholder="Company"><br> Purpose:
+    <br>
+    <input type="text" name="purpose" placeholder="Purpose of Visit"><br> Visiting Department:<br>
+    <input type="text" name="visited_depart" placeholder="Visiting Department"><br>
+    <br>
+    <input type="submit" value="Submit">
+</form>

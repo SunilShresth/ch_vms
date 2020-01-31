@@ -1,0 +1,124 @@
+#userinfo {
+    /*individualrecords*/
+    margin-top: 3%;
+    width: 100%;
+    border: 1px;
+    height: 100%;
+}
+
+#userphoto {
+    /*individualrecords*/
+    width: 220px;
+    height: 220px;
+    margin: 10%;
+    margin-right: 5%;
+}
+
+.parent {
+    filter: drop-shadow(3px 3px 3px #4d94ff);
+}
+
+.index {
+    margin: 5%;
+}
+
+.button_group {
+    margin: auto;
+    padding: 3%;
+}
+
+.float-right {}
+
+.flex-container {
+    /*individualrecords*/
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}
+
+.indexparent {
+    margin: auto;
+    margin-top: 10%;
+    width: 100%;
+}
+
+.flex-container-register {
+    text-align: center;
+    margin: auto;
+    width: 100%;
+    padding-top: 2%;
+    padding-bottom: 0%;
+}
+
+.flex-container>div {
+    /*individualrecords*/
+    background-color: #f1f1f1;
+    margin-top: 3%;
+    background-color: white;
+}
+
+.row {
+    margin: auto;
+    width: 60%;
+    border: 3px solid #73AD21;
+}
+
+.md-text-area {
+    margin: 5%;
+}
+
+.visitorin {
+    margin: auto;
+    background-color: white;
+    padding: 2%;
+    width: 100%;
+}
+
+.visitorinchild {
+    margin: 5%;
+    background-color: blue;
+    width: 100%;
+}
+
+header {
+    text-align: center;
+    margin: 5%;
+    margin-bottom: 3%;
+}
+
+button {
+    height: 50px;
+    width: 180px;
+}
+
+table {
+    border: 1px;
+    border-color: black;
+    table-layout: fixed;
+    background-color: #e6f2ff;
+}
+
+#pending {
+    text-align: center;
+}
+
+th {
+    color: #007bff;
+}
+
+body {
+    background-image: linear-gradient(to bottom right, #b3d1ff, #99ccff);
+    margin: auto;
+    padding-bottom: 10%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+input {
+    border: none;
+    border-color: transparent;
+}
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
