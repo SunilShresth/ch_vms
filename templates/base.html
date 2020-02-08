@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>{% block title %}{% endblock %} - VMS</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="https://cloudhimalaya.com/" target="_blank">
+    <img src="/static/system_images/logo.png" width="100%" height="30" alt="logo_here">
+  </a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/visitorhome">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">CMS</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Client Device</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#"><span class="fas fa-user"></span> Sunil</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><span class="fas fa-sign-in-alt"></span> Log Out</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<body>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+    <div id="footer">
+        {% block footer %} &copy; Copyright 2020 by <a href="https://cloudhimalaya.com">Cloud Himalaya</a>. {% endblock %}
+    </div>
+</body>
+
+{% block extra_js %}{% endblock %}
+
+</html>

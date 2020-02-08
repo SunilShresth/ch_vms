@@ -18,6 +18,11 @@
     filter: drop-shadow(3px 3px 3px #4d94ff);
 }
 
+.fixed_nav {
+    position: fixed;
+    top: 0;
+}
+
 .index {
     margin: 5%;
 }
@@ -26,8 +31,6 @@
     margin: auto;
     padding: 3%;
 }
-
-.float-right {}
 
 .flex-container {
     /*individualrecords*/
@@ -86,6 +89,41 @@ header {
     margin-bottom: 3%;
 }
 
+#footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #668cff;
+    color: white;
+    text-align: center;
+}
+
+a:link {
+    color: #000099;
+}
+
+
+/* visited link */
+
+a:visited {
+    color: green;
+}
+
+
+/* mouse over link */
+
+a:hover {
+    color: white;
+}
+
+
+/* selected link */
+
+a:active {
+    color: #e6b800;
+}
+
 button {
     height: 50px;
     width: 180px;
@@ -109,7 +147,8 @@ th {
 body {
     background-image: linear-gradient(to bottom right, #b3d1ff, #99ccff);
     margin: auto;
-    padding-bottom: 10%;
+    padding-top: 50px;
+    padding-bottom: 30px;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
