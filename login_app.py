@@ -16,7 +16,7 @@ migrate = Migrate(app, db)
 import mysql.connector
 from mysql.connector import Error
 
-db_conf_dict = {'host':'localhost', 'database':'VMS', 'user':'vms_user', 'password':'Hell0w0rld!'}
+db_conf_dict = {'host':'localhost', 'database':'VMS', 'user':'vms_user', 'password':'Hell0w0rld!', 'auth_plugin':'mysql_native_password'}
 
 # def convertToBinaryData(filename):
 #     # Convert digital data to binary format
@@ -31,15 +31,14 @@ def insertBLOB(photo, first_name, last_name, email, phone, org, purpose, visited
         connection = mysql.connector.connect(**db_conf_dict)
         cursor = connection.cursor()
         sql_insert_blob_query = """ INSERT INTO visitorinfo
-                          (photo, firstname, lastname, emailid, phone, organization, purpose, sent_department, checkin, checkout, status) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
+                          (photo, firstname, lastname, emailid, phone, organization, purpose, sent_department, checkin, status) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
 
         # bin_photo = convertToBinaryData(photo)
         checkin = datetime.now()
-        checkout = "Not Out"
         status = True
 
         # Convert data into tuple format
-        insert_blob_tuple = (photo, first_name, last_name, email, phone, org, purpose, visited_department, checkin, checkout, status)
+        insert_blob_tuple = (photo, first_name, last_name, email, phone, org, purpose, visited_department, checkin, status)
         result = cursor.execute(sql_insert_blob_query, insert_blob_tuple)
         connection.commit()
         print("Image and file inserted successfully as a BLOB into python_employee table", result)
