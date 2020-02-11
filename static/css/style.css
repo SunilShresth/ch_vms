@@ -89,16 +89,6 @@ header {
     margin-bottom: 3%;
 }
 
-#footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #668cff;
-    color: white;
-    text-align: center;
-}
-
 a:link {
     color: #000099;
 }
