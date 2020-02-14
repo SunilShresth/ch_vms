@@ -1,0 +1,50 @@
+{% extends "base.html" %} 
+{% block title %}Search Visitors{% endblock %} 
+{% block content %}
+    <div class="search">
+        <form action="/search" method="POST">
+            <input id ="search-input" type="text" placeholder="Search.." name="search">
+            <button type="submit" id="search-btn"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+    {% for message in get_flashed_messages() %}
+    <div class=flash>
+        {{ message }}
+    </div>
+    {% endfor %}
+    <br>
+    <br>
+    <br>
+    {% block results %}
+    <div class="containe-fluid">
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th colspan="14" id="pending">
+                    <h4>Records</h4>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="1">ID</th>
+                <th colspan="2">Name </th>
+                <th colspan="3">Email</th>
+                <th colspan="2 ">Organization</th>
+                <th colspan="2 ">Visiting Department</th>
+                <th colspan="2 ">Checkin Time</th>
+                <th colspan="2 ">Checkout</th>
+            </tr>
+            {% for item in data %}
+            <tr>
+                {% set visitor_id = item[0] %}
+                <td colspan="1" id="record "><a href="/individualdetail/{{visitor_id}}">{{ item[0]}}</a></td>
+                <td colspan="2">{{ item[1] + " " + item[2] }}</td>
+                <td colspan="3">{{ item[3]}}</td>
+                <td colspan="2">{{ item[4]}}</td>
+                <td colspan="2">{{ item[5]}}</td>
+                <td colspan="2">{{ item[6]}}</td>
+                <td colspan="2"><a href="/checkout/{{visitor_id}}">End Visit</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    <div>
+    {% endblock %}
+{% endblock %}

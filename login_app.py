@@ -228,5 +228,25 @@ def update_registration(visitor_id):
 
     return render_template('update_registration.html', data=individual_detail_data[0])
 
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    search_results = []
+    if request.method == "POST":
+        try:
+            search_string = request.form['search']
+            connection = mysql.connector.connect(**db_conf_dict)
+            cursor = connection.cursor()
+            search_query = '''select id, firstname, lastname, emailid, organization, sent_department, purpose, checkin, checkout from visitorinfo where firstname = "%s"''' %search_string
+            cursor.execute(search_query)
+            search_results = cursor.fetchall()
+        except mysql.connector.Error as error:
+            print("Failed to select from visitorinfo table {}".format(error))
+        finally:
+            if (connection.is_connected()):
+                cursor.close()
+                connection.close()
+                print("MySQL connection is closed")
+    return render_template('search.html', data = search_results)
+
 if __name__ == "__main__":
-    app.run(debug=True,host='0.0.0.0', port=4000)
+    app.run(debug=True,host='0.0.0.0', port=5000)
