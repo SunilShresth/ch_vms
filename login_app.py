@@ -89,7 +89,8 @@ def visitor_form():
 def visitor_detail():
     img_file = request.files['photo']
     # photo = img_file.read()
-    photo_path = os.path.join('static/photo', secure_filename(img_file.filename))
+    # photo_path = os.path.join('static/photo', secure_filename(img_file.filename))
+    photo_path = "static/photo/" + secure_filename(img_file.filename)
     img_file.save(photo_path)
     print(photo_path)
     first_name = request.form['firstname']
@@ -247,6 +248,21 @@ def search():
                 connection.close()
                 print("MySQL connection is closed")
     return render_template('search.html', data = search_results)
+
+@app.route('/updatecheckin', methods=['POST', 'GET'])
+def update_visitor_checkin():
+    photo_path = request.form['photo']
+    print(photo_path)
+    first_name = request.form['firstname']
+    last_name = request.form['lastname']
+    print(first_name)
+    email = request.form['email']
+    purpose = request.form['purpose']
+    phone = request.form['phone']
+    org = request.form['company']
+    department = request.form['visited_depart']
+    insertBLOB(photo_path, first_name, last_name, email, phone, org, purpose, department)
+    return redirect('/pendingoutlist')
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0', port=5000)

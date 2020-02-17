@@ -35,7 +35,7 @@
             {% for item in data %}
             <tr>
                 {% set visitor_id = item[0] %}
-                <td colspan="1" id="record "><a href="/individualdetail/{{visitor_id}}">{{ item[0]}}</a></td>
+                <td colspan="1" id="record "><a href="/visitorlogdetail/{{visitor_id}}">{{ item[0]}}</a></td>
                 <td colspan="2">{{ item[1] + " " + item[2] }}</td>
                 <td colspan="3">{{ item[3]}}</td>
                 <td colspan="2">{{ item[4]}}</td>

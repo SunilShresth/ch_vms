@@ -2,14 +2,19 @@
 {% block title %}Update Registration{% endblock %} 
 {% block content %}
     <div class="flex-container-register col col-lg-6 col-sm-8 col-xs-12 parent">
-        <form action="/visitordetail" enctype="multipart/form-data" method="POST">
+        <form action="/updatecheckin" enctype="multipart/form-data" method="POST">
             <table class="table table-sm">
                 <th colspan="2">
                     <h3>Visitor Registration Form</h3>
                 </th>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         <img src="/{{data[0]}}" alt="visitors_photo" height="150" width="150">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input class="form-control no-border" type="text" class="vistor-photo" name="photo" value="{{data[0]}}" style="opacity: 0;" disabled>
                     </td>
                 </tr>
                 <tr>
@@ -69,11 +74,8 @@
                     </td>
                 </tr>
                 <tfoot>
-                    <td>
-                        <button class="btn btn-outline-primary btn-lg" type="submit" id="button_register">Save and Visit</button>
-                    </td>
-                    <td>
-                        <button class="btn btn-outline-primary btn-lg" type="button" id="button_visitorin">Print Ticket</button>
+                    <td colspan="2">
+                        <button class="btn btn-outline-primary btn-lg" type="submit" id="button_register">start new Visit</button>
                     </td>
                 </tfoot>
             </table>
