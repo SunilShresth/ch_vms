@@ -77,7 +77,27 @@ def visitor_home():
 # Visitor detail form to fillup when new visitor comes in
 @app.route('/visitorform', methods=['POST', 'GET'])
 def visitor_form():
-    return render_template('registration_form.html')
+    try:
+        connection = mysql.connector.connect(**db_conf_dict)
+        cursor = connection.cursor()
+        select_record_query = "select organization from visitorinfo"
+        cursor.execute(select_record_query)
+        record_list = cursor.fetchall()
+        company_list = []
+        for record in record_list:
+            if record[0] not in company_list:
+                company_list.append(record[0])
+        print(company_list)
+
+    except mysql.connector.Error as error:
+        print("Failed to select from visitorinfo table {}".format(error))
+
+    finally:
+        if (connection.is_connected()):
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+    return render_template('registration_form.html', suggestions=company_list)
 
 
 # Uploading directory path set up

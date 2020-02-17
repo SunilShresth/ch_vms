@@ -28,7 +28,12 @@
                         Organization:
                     </td>
                     <td>
-                        <input class="form-control no-border" type="text" name="company" placeholder="Company">
+                        <input class="form-control no-border" type="text" name="company" placeholder="Company" list="suggestions">
+                        {% for item in suggestions %}
+                        <datalist id="suggestions">
+                            <option value= "{{ item }}">
+                        </datalist>
+                        {% endfor %}
                     </td>
                 </tr>
                 <tr>
@@ -76,9 +81,10 @@
                         Signature:
                     </td>
                     <td>
-                        <input class="form-control no-border" type="file" class="vistor-photo" name="photo" id="photo" onchange="readURL(this);">
+                        <input class="form-control no-border" type="file" class="vistor-signature" name="signature" id="signature" onchange="readURL(this);">
                     </td>
                 </tr>
+                
                 <tfoot>
                     <td>
                         <button class="btn btn-outline-primary btn-lg" type="submit" id="button_register">Save and Visit</button>
@@ -110,5 +116,5 @@
         }
     </script>
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+    {# <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script> #}
 {% endblock %}
