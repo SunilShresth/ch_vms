@@ -24,21 +24,21 @@ db_conf_dict = {'host':'localhost', 'database':'VMS', 'user':'vms_user', 'passwo
 #         binaryData = file.read()
 #     return binaryData
 
-def insertBLOB(photo, first_name, last_name, email, phone, org, purpose, visited_department):
+def insertBLOB(photo, first_name, last_name, email, phone, org, purpose, visited_department, ch_personnel):
     print("Inserting BLOB into python_employee table")
     try:
         # connection = mysql.connector.connect(host='localhost', database='VMS', user='vms_user', password='Hell0w0rld')
         connection = mysql.connector.connect(**db_conf_dict)
         cursor = connection.cursor()
         sql_insert_blob_query = """ INSERT INTO visitorinfo
-                          (photo, firstname, lastname, emailid, phone, organization, purpose, sent_department, checkin, status) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
+                          (photo, firstname, lastname, emailid, phone, organization, purpose, sent_department, ch_personnel, checkin, status) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
 
         # bin_photo = convertToBinaryData(photo)
         checkin = datetime.now()
         status = True
 
         # Convert data into tuple format
-        insert_blob_tuple = (photo, first_name, last_name, email, phone, org, purpose, visited_department, checkin, status)
+        insert_blob_tuple = (photo, first_name, last_name, email, phone, org, purpose, visited_department, ch_personnel, checkin, status)
         result = cursor.execute(sql_insert_blob_query, insert_blob_tuple)
         connection.commit()
         print("Image and file inserted successfully as a BLOB into python_employee table", result)
@@ -121,7 +121,8 @@ def visitor_detail():
     phone = request.form['phone']
     org = request.form['company']
     department = request.form['visited_depart']
-    insertBLOB(photo_path, first_name, last_name, email, phone, org, purpose, department)
+    ch_personnel = request.form['ch_personnel']
+    insertBLOB(photo_path, first_name, last_name, email, phone, org, purpose, department, ch_personnel)
     return redirect('/pendingoutlist')
 
 
@@ -234,7 +235,7 @@ def update_registration(visitor_id):
     try:
         connection = mysql.connector.connect(**db_conf_dict)
         cursor = connection.cursor()
-        select_individual_detail = "select photo, firstname, lastname, emailid, phone, organization, sent_department, purpose from visitorinfo where id="+visitor_id
+        select_individual_detail = "select photo, firstname, lastname, emailid, phone, organization, sent_department, purpose, ch_personnel from visitorinfo where id="+visitor_id
         cursor.execute(select_individual_detail)
         individual_detail_data = cursor.fetchall()
 
@@ -281,7 +282,8 @@ def update_visitor_checkin():
     phone = request.form['phone']
     org = request.form['company']
     department = request.form['visited_depart']
-    insertBLOB(photo_path, first_name, last_name, email, phone, org, purpose, department)
+    ch_personnel = request.form['ch_personnel']
+    insertBLOB(photo_path, first_name, last_name, email, phone, org, purpose, department, ch_personnel)
     return redirect('/pendingoutlist')
 
 if __name__ == "__main__":
