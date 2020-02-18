@@ -2,10 +2,25 @@
 {% block title %}Visitors Log{% endblock %} 
 {% block content %}
     <div class="containe-fluid record-list">
+        <form action="/recordlist" method="POST" style="text-align: center; padding-top: 10px;">
+            <label>Sort by</label>
+            <label>{{selected_option}}</label>
+            <select name="sort_parameter" id="sort_parameter" onchange="this.form.submit()">
+                <option value="Not_set">None</option>
+                <option value="id">ID</option>
+                <option value="firstname">Name</option>
+                <option value="organization">Organization</option>
+                <option value="checkin">Date</option>
+            </select>
+        </form>
+        <form action="/search" method="POST">
+            <input id ="search-input" type="text" placeholder="Search.." name="search">
+            <button type="submit" id="search-btn"><i class="fa fa-search"></i></button>
+        </form>
         <table class="table table-striped table-bordered">
             <tr>
-                <th colspan="15" id="pending">
-                    <h4>Records</h4>
+                <th colspan="17" id="pending">
+                    <h4>Visitor Records</h4>
                 </th>
             </tr>
             <tr>
@@ -15,6 +30,7 @@
                 <th colspan="2 ">Organization</th>
                 <th colspan="1 ">Visited Depart</th>
                 <th colspan="2">Purpose</th>
+                <th colspan="2">CH Personnel</th>
                 <th colspan="2 ">Checkin Time</th>
                 <th colspan="2 ">Checkout</th>
             </tr>
@@ -29,6 +45,7 @@
                 <td colspan="2">{{ item[6]}}</td>
                 <td colspan="2">{{ item[7]}}</td>
                 <td colspan="2">{{ item[8] }}</td>
+                <td colspan="2">{{ item[9] }}</td>
             </tr>
             {% endfor %}
         </table>

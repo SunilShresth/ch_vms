@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from datetime import datetime
 from werkzeug.utils import secure_filename
+import sorting
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -126,23 +127,14 @@ def visitor_detail():
     return redirect('/pendingoutlist')
 
 
-@app.route('/recordlist', methods=['GET'])
+@app.route('/recordlist', methods=['GET','POST'])
 def record_list():
-    try:
-        connection = mysql.connector.connect(**db_conf_dict)
-        cursor = connection.cursor()
-        select_record_query = "select id, firstname, lastname, emailid, organization, sent_department, purpose, checkin, checkout from visitorinfo"
-        cursor.execute(select_record_query)
-        record_list = cursor.fetchall()
-
-    except mysql.connector.Error as error:
-        print("Failed to select from visitorinfo table {}".format(error))
-
-    finally:
-        if (connection.is_connected()):
-            cursor.close()
-            connection.close()
-            print("MySQL connection is closed")
+    record_list =  sorting.get_record_list()
+    if request.method == "POST":
+        parameter = request.form['sort_parameter']
+        parameter_index = sorting.get_sort_parameter_index(parameter)
+        sorted_list = sorting.get_sorted_record(record_list, parameter_index)
+        return render_template('record_list.html', data=sorted_list, selected_option=parameter)
 
     return render_template('record_list.html', data=record_list)
 
