@@ -250,7 +250,7 @@ def search():
             search_string = request.form['search']
             connection = mysql.connector.connect(**db_conf_dict)
             cursor = connection.cursor()
-            search_query = '''select id, firstname, lastname, emailid, organization, sent_department, purpose, checkin, checkout from visitorinfo where firstname = "%s"''' %search_string
+            search_query = '''select id, firstname, lastname, emailid, organization, sent_department, purpose,ch_personnel, checkin, checkout from visitorinfo where firstname = "%s"''' %search_string
             cursor.execute(search_query)
             search_results = cursor.fetchall()
         except mysql.connector.Error as error:
