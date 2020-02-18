@@ -14,7 +14,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input class="form-control no-border" type="text" class="vistor-photo" name="photo" value="{{data[0]}}" style="opacity: 0;" disabled>
+                        <input class="form-control no-border" type="text" name="photo" value="{{data[0]}}" style="opacity: 0;" readonly>
                     </td>
                 </tr>
                 <tr>
@@ -71,6 +71,14 @@
                     </td>
                     <td>
                         <input class="form-control no-border" type="text" name="visited_depart" placeholder="Visiting Department" value="{{data[6]}}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        CH Personnel Involved:
+                    </td>
+                    <td>
+                        <input class="form-control no-border" type="text" name="ch_personnel" placeholder="Involved personnel" value="{{data[8]}}" required>
                     </td>
                 </tr>
                 <tfoot>

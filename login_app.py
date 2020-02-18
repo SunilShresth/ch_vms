@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from datetime import datetime
 from werkzeug.utils import secure_filename
+import sorting
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -24,21 +25,21 @@ db_conf_dict = {'host':'localhost', 'database':'VMS', 'user':'vms_user', 'passwo
 #         binaryData = file.read()
 #     return binaryData
 
-def insertBLOB(photo, first_name, last_name, email, phone, org, purpose, visited_department):
+def insertBLOB(photo, first_name, last_name, email, phone, org, purpose, visited_department, ch_personnel):
     print("Inserting BLOB into python_employee table")
     try:
         # connection = mysql.connector.connect(host='localhost', database='VMS', user='vms_user', password='Hell0w0rld')
         connection = mysql.connector.connect(**db_conf_dict)
         cursor = connection.cursor()
         sql_insert_blob_query = """ INSERT INTO visitorinfo
-                          (photo, firstname, lastname, emailid, phone, organization, purpose, sent_department, checkin, status) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
+                          (photo, firstname, lastname, emailid, phone, organization, purpose, sent_department, ch_personnel, checkin, status) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
 
         # bin_photo = convertToBinaryData(photo)
         checkin = datetime.now()
         status = True
 
         # Convert data into tuple format
-        insert_blob_tuple = (photo, first_name, last_name, email, phone, org, purpose, visited_department, checkin, status)
+        insert_blob_tuple = (photo, first_name, last_name, email, phone, org, purpose, visited_department, ch_personnel, checkin, status)
         result = cursor.execute(sql_insert_blob_query, insert_blob_tuple)
         connection.commit()
         print("Image and file inserted successfully as a BLOB into python_employee table", result)
@@ -77,7 +78,27 @@ def visitor_home():
 # Visitor detail form to fillup when new visitor comes in
 @app.route('/visitorform', methods=['POST', 'GET'])
 def visitor_form():
-    return render_template('registration_form.html')
+    try:
+        connection = mysql.connector.connect(**db_conf_dict)
+        cursor = connection.cursor()
+        select_record_query = "select organization from visitorinfo"
+        cursor.execute(select_record_query)
+        record_list = cursor.fetchall()
+        company_list = []
+        for record in record_list:
+            if record[0] not in company_list:
+                company_list.append(record[0])
+        print(company_list)
+
+    except mysql.connector.Error as error:
+        print("Failed to select from visitorinfo table {}".format(error))
+
+    finally:
+        if (connection.is_connected()):
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+    return render_template('registration_form.html', suggestions=company_list)
 
 
 # Uploading directory path set up
@@ -101,27 +122,19 @@ def visitor_detail():
     phone = request.form['phone']
     org = request.form['company']
     department = request.form['visited_depart']
-    insertBLOB(photo_path, first_name, last_name, email, phone, org, purpose, department)
+    ch_personnel = request.form['ch_personnel']
+    insertBLOB(photo_path, first_name, last_name, email, phone, org, purpose, department, ch_personnel)
     return redirect('/pendingoutlist')
 
 
-@app.route('/recordlist', methods=['GET'])
+@app.route('/recordlist', methods=['GET','POST'])
 def record_list():
-    try:
-        connection = mysql.connector.connect(**db_conf_dict)
-        cursor = connection.cursor()
-        select_record_query = "select id, firstname, lastname, emailid, organization, sent_department, purpose, checkin, checkout from visitorinfo"
-        cursor.execute(select_record_query)
-        record_list = cursor.fetchall()
-
-    except mysql.connector.Error as error:
-        print("Failed to select from visitorinfo table {}".format(error))
-
-    finally:
-        if (connection.is_connected()):
-            cursor.close()
-            connection.close()
-            print("MySQL connection is closed")
+    record_list =  sorting.get_record_list()
+    if request.method == "POST":
+        parameter = request.form['sort_parameter']
+        parameter_index = sorting.get_sort_parameter_index(parameter)
+        sorted_list = sorting.get_sorted_record(record_list, parameter_index)
+        return render_template('record_list.html', data=sorted_list, selected_option=parameter)
 
     return render_template('record_list.html', data=record_list)
 
@@ -214,7 +227,7 @@ def update_registration(visitor_id):
     try:
         connection = mysql.connector.connect(**db_conf_dict)
         cursor = connection.cursor()
-        select_individual_detail = "select photo, firstname, lastname, emailid, phone, organization, sent_department, purpose from visitorinfo where id="+visitor_id
+        select_individual_detail = "select photo, firstname, lastname, emailid, phone, organization, sent_department, purpose, ch_personnel from visitorinfo where id="+visitor_id
         cursor.execute(select_individual_detail)
         individual_detail_data = cursor.fetchall()
 
@@ -261,7 +274,8 @@ def update_visitor_checkin():
     phone = request.form['phone']
     org = request.form['company']
     department = request.form['visited_depart']
-    insertBLOB(photo_path, first_name, last_name, email, phone, org, purpose, department)
+    ch_personnel = request.form['ch_personnel']
+    insertBLOB(photo_path, first_name, last_name, email, phone, org, purpose, department, ch_personnel)
     return redirect('/pendingoutlist')
 
 if __name__ == "__main__":
