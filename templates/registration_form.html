@@ -1,33 +1,33 @@
 {% extends "base.html" %} 
 {% block title %}New Registration{% endblock %} 
 {% block content %}
-    <div class="flex-container-register col col-lg-6 col-sm-8 col-xs-12 parent">
+    <div class="flex-container-register col col-lg-5 col-sm-8 col-xs-12 parent form-font">
         <form action="/visitordetail" enctype="multipart/form-data" method="POST">
-            <table class="table table-sm">
-                <th colspan="2">
-                    <h3>Visitor Registration Form</h3>
+            <table class="table borderless table-hover">
+                <th colspan="5">
+                    <h4>Visitor Registration Form</h4>
                 </th>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         First Name:
                     </td>
-                    <td>
+                    <td colspan="3">
                         <input class="form-control no-border" type="text" name="firstname" placeholder="First Name" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Last Name:
                     </td>
-                    <td>
+                    <td colspan="3">
                         <input class="form-control no-border" type="text" name="lastname" placeholder="Last Name" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Organization:
                     </td>
-                    <td>
+                    <td colspan="3">
                         <input class="form-control no-border" type="text" name="company" placeholder="Company" list="suggestions">
                         {% for item in suggestions %}
                         <datalist id="suggestions">
@@ -37,69 +37,73 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Contact:
                     </td>
-                    <td>
+                    <td colspan="3">
                         <input class="form-control no-border" type="tel" id="phone" name="phone" pattern="[9][8]{1}[0-9]{8}" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Email:
                     </td>
-                    <td>
+                    <td colspan="3">
                         <input class="form-control no-border" type="email" name="email" placeholder="Email" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Purpose:
                     </td>
-                    <td>
+                    <td colspan="3">
                         <input class="form-control no-border" type="text" name="purpose" placeholder="Purpose of Visit">
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Visiting Department:
                     </td>
-                    <td>
+                    <td colspan="3">
                         <input class="form-control no-border" type="text" name="visited_depart" placeholder="Visiting Department">
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Upload:
                     </td>
-                    <td>
+                    <td colspan="3">
                         <input class="form-control no-border" type="file" class="vistor-photo" name="photo" id="photo" onchange="readURL(this);"> 
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Signature:
                     </td>
-                    <td>
+                    <td colspan="3">
                         <input class="form-control no-border" type="file" class="vistor-signature" name="signature" id="signature" onchange="readURL(this);">
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         CH Personnel Involved:
                     </td>
-                    <td>
+                    <td colspan="3">
                         <input class="form-control no-border" type="text" name="ch_personnel" placeholder="Involved personnel" required>
                     </td>
                 </tr>
-                <tfoot>
-                    <td>
-                        <button class="btn btn-outline-primary btn-lg" type="submit" id="button_register">Save and Visit</button>
-                    </td>
-                    <td>
-                        <button class="btn btn-outline-primary btn-lg" type="button" id="button_visitorin">Print Ticket</button>
-                    </td>
-                </tfoot>
+                </table>
+                <div class="section">
+                <table  class="table table-striped">
+                    <tr>
+                        <td colspan="3">
+                            <button class="mt-2 mb-2 btn btn-outline-primary btn-lg" type="submit" id="button_register">Save and Visit</button>
+                        </td>
+                        <td colspan="3">
+                            <button class="float-right mt-2 mb-2 btn btn-outline-primary btn-lg" type="button" id="button_visitorin">Print Ticket</button>
+                        </td>
+                    </tr>
+                </table>
             </table>
         </form>
     </div>

@@ -3,86 +3,86 @@
 {% block content %}
     <div class="flex-container-register col col-lg-6 col-sm-8 col-xs-12 parent">
         <form action="/updatecheckin" enctype="multipart/form-data" method="POST">
-            <table class="table table-sm">
-                <th colspan="2">
+            <table class="table table-hover borderless">
+                <th colspan="5">
                     <h3>Visitor Registration Form</h3>
                 </th>
                 <tr>
-                    <td colspan="2">
+                    <td colspan="5" class="image-center">
                         <img src="/{{data[0]}}" alt="visitors_photo" height="150" width="150">
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">
+                    <td colspan="5">
                         <input class="form-control no-border" type="text" name="photo" value="{{data[0]}}" style="opacity: 0;" readonly>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         First Name:
                     </td>
-                    <td>
+                    <td colspan="3">
                         <input class="form-control no-border" type="text" name="firstname" placeholder="First Name" value="{{data[1]}}" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Last Name:
                     </td>
-                    <td>
+                    <td colspan="3">
                         <input class="form-control no-border" type="text" name="lastname" placeholder="Last Name" value="{{data[2]}}" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Organization:
                     </td>
-                    <td>
+                    <td colspan="3">
                         <input class="form-control no-border" type="text" name="company" placeholder="Company" value="{{data[5]}}">
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Contact:
                     </td>
-                    <td>
+                    <td colspan="3">
                         <input class="form-control no-border" type="tel" id="phone" name="phone" pattern="[9][8]{1}[0-9]{8}" value="{{data[4]}}" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Email:
                     </td>
-                    <td>
+                    <td colspan="3">
                         <input class="form-control no-border" type="email" name="email" placeholder="Email" value="{{data[3]}}" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Purpose:
                     </td>
-                    <td>
+                    <td colspan="3">
                         <input class="form-control no-border" type="text" name="purpose" placeholder="Purpose of Visit" value="{{data[7]}}">
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Visiting Department:
                     </td>
-                    <td>
+                    <td colspan="3">
                         <input class="form-control no-border" type="text" name="visited_depart" placeholder="Visiting Department" value="{{data[6]}}">
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         CH Personnel Involved:
                     </td>
-                    <td>
+                    <td colspan="3">
                         <input class="form-control no-border" type="text" name="ch_personnel" placeholder="Involved personnel" value="{{data[8]}}" required>
                     </td>
                 </tr>
                 <tfoot>
-                    <td colspan="2">
+                    <td colspan="5">
                         <button class="btn btn-outline-primary btn-lg" type="submit" id="button_register">start new Visit</button>
                     </td>
                 </tfoot>

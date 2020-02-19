@@ -9,70 +9,70 @@
 </head>
 
 <body>
-    <header>
-        <h2>
-            Visitor {{data[0]}} Details: {% set visitor_id = data[0] %}
-        </h2>
-    </header>
-    <div class="flex-container parent">
-        <div class="float-left col col-lg-6 col-sm-12 col-xm-12">
+     <div class="flex-container parent form-font">
+        <div class="float-left col col-lg-5 col-sm-12 col-xm-12">
             <img class="img-thumbnail rounded-circle" id="userphoto" src="/{{ data[1] }}" alt="image here">
         </div>
-        <div class="float-right col col-lg-6 col-sm-12 col-xm-12" id="userinfo">
+        <div class="float-right col col-lg-7 col-sm-12 col-xm-12" id="userinfo">
             <table class="table table-striped">
+                <th colspan="6">
+                    <h2>
+                        Visitor {{data[0]}} Details: {% set visitor_id = data[0] %}
+                    </h2>
+                </th>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Name:
                     </td>
-                    <td>
+                    <td colspan="4">
                         {{data[2]+ " " + data[3]}}
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Email:
                     </td>
-                    <td>
+                    <td colspan="4">
                         {{ data[4] }}
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Contact:
                     </td>
-                    <td>
+                    <td colspan="4">
                         {{ data[5] }}
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Organization:
                     </td>
-                    <td>
+                    <td colspan="4">
                         {{ data[6] }}
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Sent Department:
                     </td>
-                    <td id="sent_depart">
+                    <td colspan="4"id="sent_depart">
                         {{ data[7] }}
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td  colspan="2">
                         Purpose:
                     </td>
-                    <td>
+                    <td colspan="4">
                         {{ data[8] }}
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         Checkin Time:
                     </td>
-                    <td>
+                    <td colspan="4">
                         {{ data[9] }}
                     </td>
                 </tr>
@@ -81,11 +81,11 @@
         <div class="section">
             <table class="table table-striped">
                 <tr>
-                    <td>
-                        <button class="btn btn-outline-primary btn-lg" type="button" id="update_visit">New Visit</button>
+                    <td colspan="3">
+                        <button class="float-left btn btn-outline-primary btn-lg" type="button" id="update_visit">New Visit</button>
                     </td>
-                    <td>
-                        <button class="btn btn-outline-primary btn-lg" type="button" id="button_return">Return</button>
+                    <td colspan="3">
+                        <button class="float-right btn btn-outline-primary btn-lg" type="button" id="button_return">Return</button>
                     </td>
                 </tr>
             </table>

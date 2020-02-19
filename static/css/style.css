@@ -13,7 +13,7 @@
     width: 220px;
     height: 220px;
     margin: 10%;
-    /* margin-right: 5%; */
+    margin-right: 5%;
 }
 
 .parent {
@@ -36,7 +36,6 @@
 
 .flex-container {
     /*individualrecords*/
-    text-align: center;
     width: 50%;
     margin: auto;
 }
@@ -47,8 +46,11 @@
     width: 100%;
 }
 
+.index_searchbox{
+    width: 100%;
+}
+
 .flex-container-register {
-    text-align: center;
     margin: auto;
     width: 100%;
     padding-top: 2%;
@@ -60,23 +62,11 @@
     background-color: #f1f1f1;
     margin-top: 3%;
     background-color: white;
+    
 }
 
 .md-text-area {
     margin: 5%;
-}
-
-.visitorin {
-    margin: auto;
-    background-color: white;
-    padding: 2%;
-    width: 100%;
-}
-
-.visitorinchild {
-    margin: 5%;
-    background-color: blue;
-    width: 100%;
 }
 
 header {
@@ -122,9 +112,9 @@ table {
     background-color: #e6f2ff;
 }
 
-#pending {
+/* #pending {
     text-align: center;
-}
+} */
 
 th {
     color: #007bff;
@@ -141,16 +131,25 @@ body {
 
 * {
     font-family: Arial, Helvetica, sans-serif;
+    word-break: break-word;
+    font-size: 13px;
 }
 
 #search-btn {
     height: 40px;
     width: 40px;
-    color: red;
+    color:black;
 }
 
 #search-input {
     height: 40px;
     width: fit-content;
     color: blue;
+}
+.form-font{
+    font-size: 12px;
+}
+.center-image{
+    align-content: center;
+    text-align: center;
 }
