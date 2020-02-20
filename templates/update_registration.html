@@ -3,13 +3,13 @@
 {% block content %}
     <div class="flex-container-register col col-lg-6 col-sm-8 col-xs-12 parent">
         <form action="/updatecheckin" enctype="multipart/form-data" method="POST">
-            <table class="table table-hover borderless">
+            <table class="table table-hover borderless py-5 pl-5">
                 <th colspan="5">
                     <h3>Visitor Registration Form</h3>
                 </th>
                 <tr>
-                    <td colspan="5" class="image-center">
-                        <img src="/{{data[0]}}" alt="visitors_photo" height="150" width="150">
+                    <td colspan="5">
+                        <img src="/{{data[0]}}" alt="visitors_photo"  class="mx-auto d-block" height="150" width="150">
                     </td>
                 </tr>
                 <tr>
@@ -81,11 +81,11 @@
                         <input class="form-control no-border" type="text" name="ch_personnel" placeholder="Involved personnel" value="{{data[8]}}" required>
                     </td>
                 </tr>
-                <tfoot>
+                <tr>
                     <td colspan="5">
-                        <button class="btn btn-outline-primary btn-lg" type="submit" id="button_register">start new Visit</button>
+                        <button class="mx-auto d-block btn btn-outline-primary btn-lg" type="submit" id="button_register">Start New Visit</button>
                     </td>
-                </tfoot>
+                </tr>
             </table>
         </form>
     </div>

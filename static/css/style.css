@@ -105,11 +105,16 @@ button {
     width: 180px;
 }
 
-table {
-    border: 1px;
-    border-color: black;
-    table-layout: fixed;
-    background-color: #e6f2ff;
+table, td, tr{
+    border-top: none            !important;
+    border-color: transparent   !important;
+	text-align:left;
+	background-color:#e6f2ff;
+}
+
+input{
+    border:none;
+    border-color: transparent;
 }
 
 /* #pending {
@@ -132,7 +137,7 @@ body {
 * {
     font-family: Arial, Helvetica, sans-serif;
     word-break: break-word;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 #search-btn {
@@ -146,10 +151,8 @@ body {
     width: fit-content;
     color: blue;
 }
-.form-font{
-    font-size: 12px;
-}
-.center-image{
+
+.center-content{
     align-content: center;
     text-align: center;
 }

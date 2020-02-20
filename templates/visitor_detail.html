@@ -9,12 +9,12 @@
 </head>
 
 <body>
-     <div class="flex-container parent form-font">
+     <div class="flex-container parent">
         <div class="float-left col col-lg-5 col-sm-12 col-xm-12">
             <img class="img-thumbnail rounded-circle" id="userphoto" src="/{{ data[1] }}" alt="image here">
         </div>
         <div class="float-right col col-lg-7 col-sm-12 col-xm-12" id="userinfo">
-            <table class="table table-striped">
+            <table class="table table-striped table-bordered">
                 <th colspan="6">
                     <h2>
                         Visitor {{data[0]}} Details: {% set visitor_id = data[0] %}

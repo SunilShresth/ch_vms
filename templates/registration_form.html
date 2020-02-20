@@ -1,7 +1,7 @@
 {% extends "base.html" %} 
 {% block title %}New Registration{% endblock %} 
 {% block content %}
-    <div class="flex-container-register col col-lg-5 col-sm-8 col-xs-12 parent form-font">
+    <div class="flex-container-register col col-lg-5 col-sm-8 col-xs-12 parent">
         <form action="/visitordetail" enctype="multipart/form-data" method="POST">
             <table class="table borderless table-hover">
                 <th colspan="5">
@@ -74,6 +74,22 @@
                     </td>
                     <td colspan="3">
                         <input class="form-control no-border" type="file" class="vistor-photo" name="photo" id="photo" onchange="readURL(this);"> 
+                        <img id="blah" src="#"  />
+                            <script>
+                                function readURL(input) {
+                                    if (input.files && input.files[1]) {
+                                        var reader1 = new FileReader();
+
+                                        reader1.onload = function(e) {
+                                            $('#blah')
+                                                .attr('src', e.target.result)
+                                                .width(150)
+                                                .height(150);
+                                    };
+                                    reader1.readAsDataURL(input.files[1]);
+                                    }
+                            }
+                            </script>
                     </td>
                 </tr>
                 <tr>
@@ -82,6 +98,22 @@
                     </td>
                     <td colspan="3">
                         <input class="form-control no-border" type="file" class="vistor-signature" name="signature" id="signature" onchange="readURL(this);">
+                        <img id="blahblah" src="#" />
+                            <script>
+                                function readURL(input) {
+                                    if (input.files && input.files[0]) {
+                                        var reader = new FileReader();
+
+                                        reader.onload = function(e) {
+                                            $('#blahblah')
+                                                .attr('src', e.target.result)
+                                                .width(150)
+                                                .height(150);
+                                    };
+                                    reader.readAsDataURL(input.files[0]);
+                                    }
+                            }
+                            </script>
                     </td>
                 </tr>
                 <tr>
@@ -92,9 +124,6 @@
                         <input class="form-control no-border" type="text" name="ch_personnel" placeholder="Involved personnel" required>
                     </td>
                 </tr>
-                </table>
-                <div class="section">
-                <table  class="table table-striped">
                     <tr>
                         <td colspan="3">
                             <button class="mt-2 mb-2 btn btn-outline-primary btn-lg" type="submit" id="button_register">Save and Visit</button>
@@ -102,15 +131,14 @@
                         <td colspan="3">
                             <button class="float-right mt-2 mb-2 btn btn-outline-primary btn-lg" type="button" id="button_visitorin">Print Ticket</button>
                         </td>
-                    </tr>
-                </table>
+                    </tr>               
             </table>
         </form>
     </div>
     <img id="blah" src="#" alt="visitor photo" />
 {% endblock %}
 {% block extra_js %}
-    <script>
+    {# <script>
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -125,7 +153,7 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
-    </script>
+    </script> #}
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     {# <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script> #}
 {% endblock %}
