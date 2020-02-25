@@ -2,27 +2,24 @@
 {% block title %}Visitors Log{% endblock %} 
 {% block content %}
     <div class="containe-fluid">
-        <form action="/recordlist" method="POST" style="text-align: center; padding-top: 10px;">
-            <label>Sort by</label>
-            
-            <select name="sort_parameter" id="sort_parameter" onchange="this.form.submit()">
-                <option value="Not_set">{{selected_option}}</option>
-                <option value="id">ID</option>
-                <option value="firstname">Name</option>
-                <option value="organization">Organization</option>
-                <option value="checkin">Date</option>
-            </select>
-        </form>
-        <form action="/search" method="POST">
-            <div class="float-right mb-2 input-group-prepend">
-                <input id ="search-input" type="text" class="btn btn-outline-primary" placeholder="Search.." name="search">
-                <button type="submit" class="btn btn-outline-primary" id="search-btn"><i class="fa fa-search"></i></button>
-            </div>
-        </form>
+        
         <table class="table table-hover">
             <tr>
-                <th colspan="17" id="pending">
+                <th colspan="15" id="pending">
                     <h4>Visitor Records</h4>
+                </th>
+                <th colspan="2">
+                    <form action="/recordlist" method="POST" style="text-align: center; padding-top: 10px;">
+                        <label>Sort by</label>
+            
+                        <select name="sort_parameter" id="sort_parameter" onchange="this.form.submit()">
+                            <option value="Not_set">{{selected_option}}</option>
+                            <option value="id">ID</option>
+                            <option value="firstname">Name</option>
+                            <option value="organization">Organization</option>
+                            <option value="checkin">Date</option>
+                        </select>
+                    </form>
                 </th>
             </tr>
             <tr>

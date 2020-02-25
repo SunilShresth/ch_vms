@@ -1,14 +1,6 @@
 {% extends "base.html" %} 
 {% block title %}Search Visitors{% endblock %} 
 {% block content %}
-    <div class="search">
-        <form action="/search" method="POST">
-            <div class="float-right mt-3 input-group-prepend">
-                <input id ="search-input" type="text" class="btn btn-outline-primary" placeholder="Search.." name="search">
-                <button type="submit" class="btn btn-outline-primary" id="search-btn"><i class="fa fa-search"></i></button>
-            </div>
-        </form>
-    </div>
     {% for message in get_flashed_messages() %}
     <div class=flash>
         {{ message }}
