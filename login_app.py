@@ -25,21 +25,21 @@ db_conf_dict = {'host':'localhost', 'database':'VMS', 'user':'vms_user', 'passwo
 #         binaryData = file.read()
 #     return binaryData
 
-def insertBLOB(photo, first_name, last_name, email, phone, org, purpose, visited_department, ch_personnel):
+def insertBLOB(photo, signature, first_name, last_name, email, phone, org, purpose, visited_department, ch_personnel):
     print("Inserting BLOB into python_employee table")
     try:
         # connection = mysql.connector.connect(host='localhost', database='VMS', user='vms_user', password='Hell0w0rld')
         connection = mysql.connector.connect(**db_conf_dict)
         cursor = connection.cursor()
         sql_insert_blob_query = """ INSERT INTO visitorinfo
-                          (photo, firstname, lastname, emailid, phone, organization, purpose, sent_department, ch_personnel, checkin, status) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
+                          (photo, signature, firstname, lastname, emailid, phone, organization, purpose, sent_department, ch_personnel, checkin, status) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
 
         # bin_photo = convertToBinaryData(photo)
         checkin = datetime.now()
         status = True
 
         # Convert data into tuple format
-        insert_blob_tuple = (photo, first_name, last_name, email, phone, org, purpose, visited_department, ch_personnel, checkin, status)
+        insert_blob_tuple = (photo, signature, first_name, last_name, email, phone, org, purpose, visited_department, ch_personnel, checkin, status)
         result = cursor.execute(sql_insert_blob_query, insert_blob_tuple)
         connection.commit()
         print("Image and file inserted successfully as a BLOB into python_employee table", result)
@@ -108,22 +108,25 @@ def visitor_form():
 # saving visitor detail form data to database and uploading photo and signature to static folder
 @app.route('/visitordetail', methods=['POST', 'GET'])
 def visitor_detail():
-    img_file = request.files['photo']
+    photo_img = request.files['photo']
+    signature_img = request.files['signature']
     # photo = img_file.read()
     # photo_path = os.path.join('static/photo', secure_filename(img_file.filename))
-    photo_path = "static/photo/" + secure_filename(img_file.filename)
-    img_file.save(photo_path)
-    print(photo_path)
+    photo_path = "static/photo/" + secure_filename(photo_img.filename)
+    signature_path = "static/signature/" + secure_filename(signature_img.filename)
+    photo_img.save(photo_path)
+    signature_img.save(signature_path)
+    # print(photo_path)
     first_name = request.form['firstname']
     last_name = request.form['lastname']
-    print(first_name)
+    # print(first_name)
     email = request.form['email']
     purpose = request.form['purpose']
     phone = request.form['phone']
     org = request.form['company']
     department = request.form['visited_depart']
     ch_personnel = request.form['ch_personnel']
-    insertBLOB(photo_path, first_name, last_name, email, phone, org, purpose, department, ch_personnel)
+    insertBLOB(photo_path, signature_path, first_name, last_name, email, phone, org, purpose, department, ch_personnel)
     return redirect('/pendingoutlist')
 
 
@@ -186,7 +189,7 @@ def individual_detail(visitor_id):
     try:
         connection = mysql.connector.connect(**db_conf_dict)
         cursor = connection.cursor()
-        select_individual_detail = "select id, photo, firstname, lastname, emailid, phone, organization, sent_department, purpose, checkin from visitorinfo where id="+visitor_id
+        select_individual_detail = "select id, photo, firstname, lastname, emailid, phone, organization, sent_department, purpose, checkin, signature from visitorinfo where id="+visitor_id
         cursor.execute(select_individual_detail)
         individual_detail_data = cursor.fetchall()
 
