@@ -26,6 +26,14 @@
       </li>
     </ul>
     <ul class="nav navbar-nav ml-auto">
+      <form action="/search" method="POST">
+        <div class="float-right mb-2 input-group-prepend">
+          <input id ="search-input" type="text" class="btn btn-outline-primary" placeholder="Search.." name="search">
+          <button type="submit" class="btn btn-outline-primary" id="search-btn"><i class="fa fa-search"></i></button>
+        </div>
+      </form>
+    </ul>
+    <ul class="nav navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" href="#"><span class="fas fa-user"></span> Sunil</a>
       </li>

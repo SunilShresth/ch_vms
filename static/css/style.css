@@ -106,7 +106,7 @@ button {
 }
 
 table, td, tr{
-    border-top: none            !important;
+    /* border-top: none            !important; */
     border-color: transparent   !important;
 	text-align:left;
 	background-color:#e6f2ff;
@@ -137,7 +137,7 @@ body {
 * {
     font-family: Arial, Helvetica, sans-serif;
     word-break: break-word;
-    font-size: 12px;
+    font-size: 15px;
 }
 
 #search-btn {
@@ -148,8 +148,8 @@ body {
 
 #search-input {
     height: 40px;
-    width: fit-content;
-    color: blue;
+    /* width: fit-content; */
+    /* color: blue; */
 }
 
 .center-content{
