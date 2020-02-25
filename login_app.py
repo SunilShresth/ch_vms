@@ -220,7 +220,7 @@ def visitor_log_detail(visitor_id):
     try:
         connection = mysql.connector.connect(**db_conf_dict)
         cursor = connection.cursor()
-        select_individual_detail = "select id, photo, firstname, lastname, emailid, phone, organization, sent_department, purpose, checkin from visitorinfo where id="+visitor_id
+        select_individual_detail = "select id, photo, firstname, lastname, emailid, phone, organization, sent_department, purpose, checkin, signature from visitorinfo where id="+visitor_id
         cursor.execute(select_individual_detail)
         individual_detail_data = cursor.fetchall()
 
