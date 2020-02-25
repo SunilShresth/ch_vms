@@ -34,7 +34,10 @@ def get_sort_parameter_index(parameter):
         return 0
 
 def get_sorted_record(record_list, parameter_index):
-    sorted_record = sorted(record_list, key=itemgetter(parameter_index))
+    if parameter_index == 8:
+        sorted_record = sorted(record_list, key=itemgetter(parameter_index), reverse=True)
+    else:
+        sorted_record = sorted(record_list, key=itemgetter(parameter_index))
     return sorted_record
 
 # parameter = "checkin"
