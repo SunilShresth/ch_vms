@@ -116,6 +116,16 @@ def visitor_detail():
     signature_path = "static/signature/" + secure_filename(signature_img.filename)
     photo_img.save(photo_path)
     signature_img.save(signature_path)
+    
+    # to make suite the path in production server
+
+    # photo_upload_path = "/var/www/vms_webapp/static/photo/" + secure_filename(photo_img.filename)
+    # signature_upload_path = "/var/www/vms_webapp/static/signature/" + secure_filename(signature_img.filename)
+    # photo_path = "static/photo/" + secure_filename(photo_img.filename)
+    # signature_path = "static/signature/" + secure_filename(signature_img.filename)
+    # photo_img.save(photo_upload_path)
+    # signature_img.save(signature_upload_path)
+
     # print(photo_path)
     first_name = request.form['firstname']
     last_name = request.form['lastname']
