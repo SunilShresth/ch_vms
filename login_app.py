@@ -7,6 +7,7 @@ from flask_migrate import Migrate
 from datetime import datetime
 from werkzeug.utils import secure_filename
 import sorting
+from operator import itemgetter
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -290,6 +291,117 @@ def update_visitor_checkin():
     ch_personnel = request.form['ch_personnel']
     insertBLOB(photo_path, first_name, last_name, email, phone, org, purpose, department, ch_personnel)
     return redirect('/pendingoutlist')
+
+
+# For internal DC visit
+@app.route('/internalvisit', methods=['GET'])
+def internal_visit():
+    return render_template('internal_visit_home.html')
+
+@app.route('/internalvisitform', methods=['POST','GET'])
+def internal_visit_form():
+    return render_template('internal_visit_form.html')
+
+@app.route('/internaloutpending', methods=['GET', 'POST'])
+def internal_out_pending():
+    try:
+        connection = mysql.connector.connect(**db_conf_dict)
+        cursor = connection.cursor()
+        select_pending_query = "select visit_id, name, email_id, phone, purpose, in_time from internal_visit where status=1"
+        cursor.execute(select_pending_query)
+        pending_records = cursor.fetchall()
+
+    except mysql.connector.Error as error:
+        print("Failed to select from visitorinfo table {}".format(error))
+
+    finally:
+        if (connection.is_connected()):
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+
+    return render_template('internal_out_pending.html', data=pending_records)
+
+@app.route('/internalrecords', methods=['GET'])
+def internal_records():
+    try:
+        connection = mysql.connector.connect(**db_conf_dict)
+        cursor = connection.cursor()
+        select_pending_query = "select visit_id, name, email_id, phone, purpose, in_time, out_time from internal_visit"
+        cursor.execute(select_pending_query)
+        record_list = cursor.fetchall()
+        sorted_record = sorted(record_list, key=itemgetter(5), reverse=True)
+
+    except mysql.connector.Error as error:
+        print("Failed to select from visitorinfo table {}".format(error))
+
+    finally:
+        if (connection.is_connected()):
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+
+    return render_template('internal_records.html', data=sorted_record)
+
+# gets the data form registration form and calls a function to insert into database
+@app.route('/get_and_submit', methods=['GET','POST'])
+def get_and_submit():
+    name = request.form['name']
+    email_id = request.form['email']
+    phone = request.form['phone']
+    purpose = request.form['purpose']
+    in_time = datetime.now()
+    status = True
+
+    # insert visitor information into database
+    add_new_internal_visit(name, email_id, phone, purpose, status, in_time)
+
+    return redirect('/internaloutpending')
+
+# connects to database and inserts the the data into the internal_visit table
+def add_new_internal_visit(name, email_id, phone, purpose, status, in_time):
+    try:
+        connection = mysql.connector.connect(**db_conf_dict)
+        cursor = connection.cursor()
+        sql_insert_query = """ INSERT INTO internal_visit
+                          (name, email_id, phone, purpose, status, in_time) VALUES (%s,%s,%s,%s,%s,%s)"""
+
+        # Convert data into tuple format
+        insert_tuple = (name, email_id, phone, purpose, status, in_time)
+        cursor.execute(sql_insert_query, insert_tuple)
+        connection.commit()
+
+    except mysql.connector.Error as error:
+        print("Failed inserting data into MySQL table {}".format(error))
+
+    finally:
+        if (connection.is_connected()):
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+
+# Update the exit time from dc visit
+@app.route('/internalcheckout/<string:visitor_id>', methods=['GET', 'POST'])
+def internal_checkout(visitor_id):
+    try:
+        connection = mysql.connector.connect(**db_conf_dict)
+        cursor = connection.cursor()
+        out_time = datetime.now()
+        update_pending_tuple = (out_time, visitor_id)
+        update_pending_query = "UPDATE internal_visit SET status=0, out_time=%s WHERE visit_id=%s"
+        cursor.execute(update_pending_query, update_pending_tuple)
+
+    except mysql.connector.Error as error:
+        print("Failed to update pending visitor {}".format(error))
+
+    finally:
+        if (connection.is_connected()):
+            cursor.close()
+            connection.commit()
+            connection.close()
+            print("MySQL connection is closed")
+
+    return redirect("/internaloutpending")
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0', port=5000)

@@ -1,0 +1,51 @@
+{% extends "base.html" %} 
+{% block title %}New Internal visit{% endblock %} 
+{% block content %}
+    <div class="flex-container-register col col-lg-5 col-sm-8 col-xs-12 parent">
+        <form action="/get_and_submit" enctype="multipart/form-data" method="POST">
+            <table class="table borderless table-hover">
+                <th colspan="5">
+                    <h4>Internal DC Visit Form</h4>
+                </th>
+                <tr>
+                    <td colspan="2">
+                        Name:
+                    </td>
+                    <td colspan="3">
+                        <input class="form-control no-border" type="text" name="name" placeholder="Enter Name" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        Email:
+                    </td>
+                    <td colspan="3">
+                        <input class="form-control no-border" type="email" name="email" placeholder="Email" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        Phone:
+                    </td>
+                    <td colspan="3">
+                        <input class="form-control no-border" type="tel" id="phone" name="phone" pattern="[9][8]{1}[0-9]{8}" required>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td colspan="2">
+                        Purpose:
+                    </td>
+                    <td colspan="3">
+                        <input class="form-control no-border" type="text" name="purpose" placeholder="Purpose of Visit">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        <button class="mt-2 mb-2 btn btn-outline-primary btn-lg" type="submit" id="button_register">Start Visit</button>
+                    </td>
+                </tr>               
+            </table>
+        </form>
+    </div>
+{% endblock %}

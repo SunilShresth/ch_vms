@@ -1,0 +1,32 @@
+{% extends "base.html" %} 
+{% block title %}Client Visitors{% endblock %}
+{% block content %}
+    <div class="indexparent col col-lg-3 col-sm-4 col-xs-5 parent ">
+        <table class="table table-hover">
+            <tr>
+                <td><button class="btn btn-outline-primary btn-block" type="button" id="button_register">New</button></td>
+            </tr>
+            <tr>
+                <td><button class="btn btn-outline-primary btn-block" type="button" id="button_showoutpending">Show Out Pending</button></td>
+            </tr>
+            <tr>
+                <td><button class="btn btn-outline-primary btn-block" type="button" id="button_visitorsrecords">Records</button></td>
+            </tr>
+            
+        </table>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+        document.getElementById("button_register").onclick = function() {
+            location.href = "internalvisitform";
+        };
+        document.getElementById("button_visitorsrecords").onclick = function() {
+            location.href = "internalrecords";
+        };
+        document.getElementById("button_showoutpending").onclick = function() {
+            location.href = "internaloutpending";
+        };
+    </script>
+{% endblock %}

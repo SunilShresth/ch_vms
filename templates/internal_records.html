@@ -1,0 +1,35 @@
+{% extends "base.html" %} 
+{% block title %}Internal Record{% endblock %} 
+{% block content %}
+    <div class="containe-fluid">
+        
+        <table class="table table-hover">
+            <tr>
+                <th colspan="15" id="pending">
+                    <h4>Internal DC visit Log</h4>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="1">ID</th>
+                <th colspan="3">Name </th>
+                <th colspan="3">Email</th>
+                <th colspan="2 ">Phone</th>
+                <th colspan="4">Purpose</th>
+                <th colspan="2 ">In Time</th>
+                <th colspan="2 ">Out Time</th>
+            </tr>
+            {% for item in data %}
+            <tr>
+                {% set visitor_id = item[0] %}
+                <td colspan="1" id="record ">{{ item[0] }}</td>
+                <td colspan="3">{{ item[1] }}</td>
+                <td colspan="3">{{ item[2]}}</td>
+                <td colspan="2">{{ item[3]}}</td>
+                <td colspan="4">{{ item[4]}}</td>
+                <td colspan="2">{{ item[5]}}</td>
+                <td colspan="2">{{ item[6]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    <div>
+{% endblock %}
